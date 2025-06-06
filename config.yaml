@@ -2,9 +2,10 @@
 processor_name: google/owlv2-large-patch14-finetuned
 model_name: google/owlv2-large-patch14-finetuned
 
-threshold: 0.2
+threshold: 0.3
 
 # File paths
-data_folder: data
-save_output: True
-output_folder: output
+data_folder: data # Not used
+filepath: data/tower3.jpg
+save_output: True # Not used
+output_folder: output # Not used
