@@ -15,6 +15,8 @@ with open("config.yaml", "r") as file:
 processor_name = config.get("processor_name")
 model_name = config.get("model_name")
 
+threshold = config.get("threshold", 0.5)
+
 # Load an image locally
 filepath = "data/tower2.jpg"
 image = Image.open(filepath)
@@ -54,7 +56,7 @@ df = pd.DataFrame({
 df.to_csv("results/results.csv", index=False)
 
 # Display the image with bounding boxes
-plot_boxes(image, df, threshold=0.1)
+plot_boxes(image, df, threshold=threshold)
 
 # Analyze the results
-count_objects(df, threshold=0.1)
+count_objects(df, threshold=threshold)
