@@ -1,9 +1,6 @@
-import requests
 from PIL import Image
-import torch
 import yaml
 import pandas as pd
-from transformers import Owlv2Processor, Owlv2ForObjectDetection
 from plots import plot_boxes
 from object_detection import detect_objects
 from analysis import count_objects
@@ -18,11 +15,11 @@ model_name = config.get("model_name")
 threshold = config.get("threshold", 0.5)
 
 # Load an image locally
-filepath = "data/tower2.jpg"
+filepath = config.get("filepath")
 image = Image.open(filepath)
 
 # image.show()
-texts = [["antenna", "panel", "tower"]]
+texts = [["antenna", "circular antenna", "tower"]]
 
 results = detect_objects(model_name=model_name,
                         processor_name=processor_name,
@@ -53,10 +50,11 @@ df = pd.DataFrame({
     "score": [round(score.item(), 3) for score in scores],
     "box": [box.tolist() for box in boxes]
 })
-df.to_csv("results/results.csv", index=False)
+filtered_df = df[df["score"] > threshold]
+filtered_df.to_csv("results/results.csv", index=False)
 
 # Display the image with bounding boxes
-plot_boxes(image, df, threshold=threshold)
+plot_boxes(image, filtered_df)
 
 # Analyze the results
-count_objects(df, threshold=threshold)
+count_objects(filtered_df)

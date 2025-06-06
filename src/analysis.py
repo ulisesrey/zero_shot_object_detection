@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Count unique objects
-def count_objects(df, threshold=0.5):
+def count_objects(df):
     """
     Count unique objects above a certain score threshold.
     
@@ -12,8 +12,7 @@ def count_objects(df, threshold=0.5):
     Returns:
     - DataFrame with counts of unique labels above the threshold.
     """
-    filtered_df = df[df["score"] > threshold]
-    value_counts = filtered_df["label"].value_counts()
+    value_counts = df["label"].value_counts()
 
     print(f"These are the number unique objects detected above the threshold of {threshold}.")
     print(value_counts)
@@ -23,4 +22,4 @@ if __name__ == "__main__":
     # Example usage
     df_path = "results/results.csv"
     df = pd.read_csv(df_path)
-    count_objects(df, threshold=0.7)
+    count_objects(df)

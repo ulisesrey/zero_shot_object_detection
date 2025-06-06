@@ -1,28 +1,17 @@
 import matplotlib.pyplot as plt
 import ast  # To safely parse string to list
 
-def plot_boxes(image, df, threshold=0.5):
+def plot_boxes(image, df):
     """
     Plot boxes on an image using bounding box data from a DataFrame.
 
     Parameters:
     - image: PIL.Image object
     - df: pandas.DataFrame with columns ['label', 'score', 'box']
-    - threshold: float, minimum score to plot a box
     """
-    # Filter by score threshold
-    filtered_df = df[df["score"] > threshold]
-
-    if filtered_df.empty:
-        print("No boxes above threshold.")
-        return
-
-    # Parse box strings into lists of floats # Not needed
-    #filtered_df["box"] = filtered_df["box"].apply(lambda b: ast.literal_eval(b))
-
     # Get labels and boxes
-    labels = filtered_df["label"].tolist()
-    boxes = filtered_df["box"].tolist()
+    labels = df["label"].tolist()
+    boxes = df["box"].tolist()
 
     # Assign unique colors to label types
     unique_labels = sorted(set(labels))
@@ -51,7 +40,7 @@ if __name__ == "__main__":
     from PIL import Image
 
     # Example usage
-    image_path = "data/tower2.jpg"
+    image_path = "data/tower3.jpg"
     df_path = "results/results.csv"
 
     image = Image.open(image_path)
@@ -60,4 +49,4 @@ if __name__ == "__main__":
     # Ensure 'box' column is parsed correctly
     df["box"] = df["box"].apply(ast.literal_eval)
 
-    plot_boxes(image, df, threshold=0.15)
+    plot_boxes(image, df)
