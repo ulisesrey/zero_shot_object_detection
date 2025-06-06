@@ -1,5 +1,5 @@
 # Zero Shot Object Detection
-A repository to detect objects from images using Zero shot inference
+A repository to detect objects from images using Zero shot inference with OWLv2.
 
 ## Execution
 1. Clone the respository
@@ -46,4 +46,17 @@ The model uses CLIP as its multi-modal backbone, with a ViT-like Transformer to 
 
 Read more under:
 https://huggingface.co/google/owlv2-large-patch14-finetuned
+
+Or the original paper:
+```
+@misc{minderer2024scalingopenvocabularyobjectdetection,
+      title={Scaling Open-Vocabulary Object Detection}, 
+      author={Matthias Minderer and Alexey Gritsenko and Neil Houlsby},
+      year={2024},
+      eprint={2306.09683},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2306.09683}, 
+}
+```
 
