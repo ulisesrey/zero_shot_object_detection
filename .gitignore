@@ -1,2 +1,4 @@
 .DS_Store
 src/__pycache__/*.pyc
+# ignore local images
+data/533*.jpg
