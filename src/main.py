@@ -15,7 +15,7 @@ processor_name = config.get("processor_name")
 model_name = config.get("model_name")
 
 # Load an image locally
-filepath = "data/tower.jpg"
+filepath = "data/tower2.jpg"
 image = Image.open(filepath)
 
 # image.show()
@@ -54,3 +54,6 @@ df.to_csv("results/results.csv", index=False)
 
 # Display the image with bounding boxes
 plot_boxes(image, boxes, named_labels)
+
+from analysis import count_objects
+count_objects(df, threshold=0.1)
