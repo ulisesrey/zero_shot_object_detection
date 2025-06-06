@@ -1,0 +1,8 @@
+# Specify processor and model
+processor_name: google/owlv2-large-patch14-finetuned
+model_name: google/owlv2-large-patch14-finetuned
+
+# File paths
+data_folder: data
+save_output: True
+output_folder: output
