@@ -6,6 +6,7 @@ import pandas as pd
 from transformers import Owlv2Processor, Owlv2ForObjectDetection
 from plots import plot_boxes
 from object_detection import detect_objects
+from analysis import count_objects
 
 # Load the configuration file
 with open("config.yaml", "r") as file:
@@ -53,7 +54,7 @@ df = pd.DataFrame({
 df.to_csv("results/results.csv", index=False)
 
 # Display the image with bounding boxes
-plot_boxes(image, boxes, named_labels)
+plot_boxes(image, df, threshold=0.1)
 
-from analysis import count_objects
+# Analyze the results
 count_objects(df, threshold=0.1)
