@@ -17,19 +17,19 @@ model_name = config.get("model_name")
 filepath = "data/tower.jpg"
 image = Image.open(filepath)
 # image.show()
-texts = [["antenna", "panel", "tower"]]
+labels = [["antenna", "panel", "tower"]]
 
 results = detect_objects(model_name=model_name,
                         processor_name=processor_name,
                         images=image,
-                        texts=texts)
+                        labels=labels)
 
 i = 0  # Retrieve predictions for the first image for the corresponding text queries
-text = texts[i]
+# text = labels[i]
 boxes, scores, labels = results[i]["boxes"], results[i]["scores"], results[i]["labels"]
 for box, score, label in zip(boxes, scores, labels):
     box = [round(i, 2) for i in box.tolist()]
-    print(f"Detected {text[label]} with confidence {round(score.item(), 3)} at location {box}")
+    print(f"Detected {label[i]} with confidence {round(score.item(), 3)} at location {box}")
 
 
 # Display the image with bounding boxes

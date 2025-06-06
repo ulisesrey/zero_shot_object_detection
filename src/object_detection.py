@@ -7,7 +7,7 @@ from transformers import Owlv2Processor, Owlv2ForObjectDetection
 def detect_objects(model_name,
                    processor_name,
                    images,
-                   texts):
+                   labels):
     """
     Detect objects in an image using the OWL-ViT model.
     Args:
@@ -21,7 +21,7 @@ def detect_objects(model_name,
     model = Owlv2ForObjectDetection.from_pretrained(model_name)
 
  
-    inputs = processor(text=texts, images=images, return_tensors="pt")
+    inputs = processor(text=labels, images=images, return_tensors="pt")
 
     with torch.no_grad():
         outputs = model(**inputs)
